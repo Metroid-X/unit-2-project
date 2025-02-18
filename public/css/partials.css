@@ -1,0 +1,30 @@
+nav {
+    justify-self: center;
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+    h4 {
+        margin: 10px 0;
+        align-self: flex-start;
+    }
+    .nav-links {
+        border: 2px outset black;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2px;
+        padding-left: 0;
+        a {
+            width: 50%;
+            text-align: center;
+            margin-left: 2px;
+            border: 2px outset black;
+            text-decoration: none;
+            padding: 2px 0;
+        }
+        a:hover {
+            background-color: aliceblue;
+        }
+    }
+}
