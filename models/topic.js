@@ -2,14 +2,30 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Model = mongoose.model;
 
 const User = require('./user.js');
 
-const topicSchema = new Schema({
-    title: {
+const commentSchema = new Schema({
+    author_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    date: {
+        type: Date,
+        value: mongoose.now,
+    },
+    content: {
         type: String,
         required: true,
     },
+    linked: {
+        type: String,
+        required: false,
+    },
+});
+
+const topicSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -17,9 +33,30 @@ const topicSchema = new Schema({
     date: {
         type: Date,
         value: mongoose.now
-    }
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    linked: {
+        type: String,
+        required: false,
+    },
+    comments: [commentSchema]
 });
 
-const Topic = mongoose.model('Topic', topicSchema);
+const forumSchema = Schema({
+    forum_branch: {
+        type: String,
+        required: true,
+    },
+    topics: [topicSchema],
+});
 
-module.exports = Topic;
+const Forum = Model('Forum', forumSchema);
+
+module.exports = Forum;

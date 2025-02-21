@@ -7,19 +7,21 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <%- include('../partials/navbar.ejs') %>
-
-    <div class="sign-in-container">
-        <form action="/auth/sign-in" method="POST">
-            <br>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" />
-            <br><br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" />
-            <br><br>
-            <button type="submit">Sign In</button>
-        </form>
-    </div>
+    <main>
+        <%- include('../partials/navbar.ejs') %>
+        
+        <div class="sign-in-container">
+            <form action="/auth/sign-in" method="POST">
+                <br>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" />
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" />
+                <br><br>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

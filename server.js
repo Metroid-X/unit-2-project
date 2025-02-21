@@ -10,14 +10,11 @@ const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const authController = require('./controllers/auth.js');
+const topicsController = require('./controllers/topics.js');
 
 const port = process.env.PORT ? process.env.PORT : '3001';
 
 const path = require('path');
-
-const topicsController = require('./controllers/topics.js');
-const postsController = require('./controllers/posts.js');
-
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -47,20 +44,33 @@ app.use(passUserToView); // use new passUserToView middleware here
 
 // ROUTES
 
+// app.get('/', (req, res) => {
+//     res.redirect('/guest/forums');
+// });
+
+
+// // The user does not need to be redirected when on the
+// // index page, as all changes are handled on the index
+// // page itself.
 app.get('/', (req, res) => {
-  // Check if the user is signed in
-  if (req.session.user) {
-    // Redirect signed-in users to their applications index
-    res.redirect(`/users/${req.session.user._id}/topics`);
-  } else {
-    // Show the homepage for users who are not signed in
-    res.render('index.ejs');
-  }
+    // check if we're signed in
+    if(req.session.user){
+        res.redirect(`/${req.session.user.displayname}/forums`);
+    } else {
+        res.render('index.ejs', {
+        });
+    }
 });
+  
+  
+  
+  
 
-app.use('/auth', authController);
-app.use(isSignedIn); 
-
-app.listen(port, () => {
-  console.log(`The express app is ready on port ${port}!`);
-});
+  app.use('/auth', authController);
+  app.use(isSignedIn);
+  app.use(`/:userName/forums`, topicsController);
+  
+  app.listen(port, () => {
+    console.log(`The express app is ready on port ${port}!`);
+  });
+    

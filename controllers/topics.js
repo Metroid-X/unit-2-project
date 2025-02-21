@@ -4,47 +4,46 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user.js');
+const Forum = require('../models/topic.js');
+
+const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+
 
 // ROUTES WILL GO HERE
 
-
-    router.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-      // Look up the user from req.session
-      const currentUser = await User.findById(req.session.user._id);
-      // Render index.ejs, passing in all of the current user's
-      // applications as data in the context object.
-      res.render('topics/index.ejs', {
-        applications: currentUser.applications,
-      });
+        
+        const currentUser = await User.findById(req.session.user._id);
+        
+        res.render('forums/index.ejs', {
+            userTopics: currentUser.topics,
+        })
     } catch (error) {
-      // If any errors, log them and redirect back home
-      console.log(error);
-      res.redirect('/');
+        console.log(error);
+        res.redirect('/');
     }
-  });
+});
 
-  router.get('/new', async (req, res) => {
-    res.render('topics/new.ejs');
-  });
-
-  router.post('/', async (req, res) => {
+router.get('/:forumBranch', async (req, res) => {
     try {
-      // Look up the user from req.session
-      const currentUser = await User.findById(req.session.user._id);
-      // Push req.body (the new form data object) to the
-      // applications array of the current user
-      currentUser.applications.push(req.body);
-      // Save changes to the user
-      await currentUser.save();
-      // Redirect back to the applications index view
-      res.redirect(`/users/${currentUser._id}/topics`);
-    } catch (error) {
-      // If any errors, log them and redirect back home
-      console.log(error);
-      res.redirect('/');
-    }
-  });
+        const currentBranch = await Forum.findOne({ forum_branch: req.params.forumBranch});
+        const branchName = await currentBranch.forum_branch
 
-    
-    
+
+
+        res.render('branch/index.ejs', {
+            user: req.session.user,
+            forumBranch: currentBranch,
+            branchName: capitalizeFirstLetter(branchName),
+        });
+    } catch(error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
+module.exports = router;

@@ -1,13 +1,68 @@
 <link rel="stylesheet" href="/css/partials.css">
+
 <nav>
-    <div class="navbar">
-        <h4 id="nav-header">TotalRecall forums</h4>
-        <div class="nav-links">
-            <a href="/topics">Topics</a>
+    <div class="top-bar">
+        <h2 id="nav-header">
+            TotalRecall forums
+        </h2>
+
+        <div id="user-status">
             <% if(user) { %>
-                <a class="authlink" href="/users/<%=user._id%>/profile">
-                    Your Profile
+                <div id="user-status-actual">
+                    <span>Signed in as:</span><br>
+                    <span class="main-username"><%= user.displayname %></span>
+                </div>
+                <% if(user.linkedavatar !== (undefined & "")) { %>
+                    <img id="main-user-avatar" class="user-avatar signed-in" src="<%= user.linkedavatar %>">
+                <% } else { %>
+                    <img id="main-user-avatar" class="user-avatar signed-in" src="">
+                <% } %>
+            <% } else { %>
+                <div id="user-status-actual">
+                    <span>Not currently signed in</span><br>
+                </div>
+                <div id="main-user-avatar" class="user-avatar signed-out"></div>
+            <% } %>
+        </div>
+    </div>
+    <div class="nav-links">
+        <% if(user) { %>
+            <div style="margin-bottom: 2px;">
+                <a class="authlink" href="/<%=user.displayname%>/forums/main">
+                    Main Forum
                 </a>
+                <a class="authlink" href="/<%=user.displayname%>/forums/art">
+                    Art Forum
+                </a>
+                <a class="authlink" href="/<%=user.displayname%>/forums/games">
+                    Games Forum
+                </a>
+            </div>
+        <% } %>
+        <div>
+            <% if(user) { %>
+                <div class="authlink">
+                    <details>
+                        <summary>New Topic</summary>
+                        <div>
+                            <a href="/<%=user.displayname%>/forums/main/new">
+                                <p class="shadow">Main Forum</p>
+                                <p>Main Forum</p>
+                            </a>
+                            <a href="/<%=user.displayname%>/forums/art/new">
+                                <p class="shadow">Art Forum</p>
+                                <p>Art Forum</p>
+                            </a>
+                            <a href="/<%=user.displayname%>/forums/games/new">
+                                <p class="shadow">Games Forum</p>
+                                <p>Games Forum</p>
+                            </a>
+                        </div>
+                    </details>
+                </div>
+            <% } %>
+            <a class="authlink" href="/">Forums</a>
+            <% if(user) { %>
                 <a class="authlink" href="/auth/sign-out">
                     Sign Out
                 </a>

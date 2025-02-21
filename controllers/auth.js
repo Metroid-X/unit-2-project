@@ -21,16 +21,23 @@ router.post('/sign-up', async (req, res) => {
     try {
         // Check if the username is already taken
         const userInDatabase = await User.findOne({ username: req.body.username });
+        
         if (userInDatabase) {
             return res.send('Username already taken.');
         }
-        
+        const displayNameInDatabase = await User.findOne({ displayname: req.body.displayname });
+        if (displayNameInDatabase) {
+            return res.send('Display Name already taken.')
+        }
+
         // Username is not taken already!
         // Check if the password and confirm password match
         if (req.body.password !== req.body.confirmPassword) {
             return res.send('Password and Confirm Password must match');
         }
         
+        
+
         // Must hash the password before sending to the database
         const hashedPassword = bcrypt.hashSync(req.body.password, 10);
         req.body.password = hashedPassword;
@@ -67,7 +74,9 @@ router.post('/sign-in', async (req, res) => {
         // If there is other data you want to save to `req.session.user`, do so here!
         req.session.user = {
             username: userInDatabase.username,
-            _id: userInDatabase._id
+            _id: userInDatabase._id,
+            displayname: userInDatabase.displayname,
+            linked_user_img: userInDatabase.linkedavatar,
         };
         
         res.redirect('/');

@@ -4,27 +4,185 @@ nav {
     max-width: 1024px;
     display: flex;
     flex-direction: column;
-    h4 {
-        margin: 10px 0;
+    h2 {
+        margin: 10px;
         align-self: flex-start;
     }
     .nav-links {
         border: 2px outset black;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         padding: 2px;
+        border-top: 1px outset black;
         padding-left: 0;
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
+
+.authlink {
+    background-color: rgb(119, 154, 185);
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 18px;
+    text-align: center;
+    margin-left: 2px;
+    border: 2px outset rgb(137, 175, 209);
+    text-decoration: none;
+    padding: 2px 0;
+    user-select: none;
+    
+    
+    color: darkblue;
+    font-weight: bold;
+    
+    details {
+        cursor: default;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+        background-size: 70px 0;
+        width: 100%;
+        height: fit-content;
+
+        summary {
+            cursor: pointer;
+            color: darkblue;
+            font-weight: bold;
+        }
+        summary:hover {
+            color: blue;
+        }
         a {
-            width: 50%;
-            text-align: center;
-            margin-left: 2px;
-            border: 2px outset black;
-            text-decoration: none;
-            padding: 2px 0;
+            border: 0px;
+            padding: 2px;
+            margin: 2px 6px;
+            height: 18px;
+            width: 90%;
         }
         a:hover {
-            background-color: aliceblue;
+            background-color: rgba(209, 240, 255, 0.375);
         }
+    }
+    details[open] {
+        z-index: 9;
+        summary, div {
+            width: 120px;
+            background-color: rgba(92, 109, 124, 0.75);
+            color: darkblue;
+        }
+        summary {
+            color: blue;
+            margin-top: -1px;
+            border: 1px solid black;
+            border-bottom: 0;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+            border-top: 0;
+            padding: 2px 0;
+
+            a {
+                text-align: center;
+                position: relative;
+                color: inherit;
+                text-decoration: none;
+                p {
+                    width: 100%;
+                    margin: 0;
+                    transform: translate(-50%,-50%);
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                }
+                .shadow {
+                    -webkit-text-stroke: 2px skyblue;
+                }
+            }
+            a:hover {
+                color: blue;
+                text-decoration: none;
+                .shadow {
+                    -webkit-text-stroke: 2px lightblue;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+
+.authlink:hover {
+    color: blue;
+    background-color: rgb(138, 175, 207);
+    border: 2px outset rgb(195, 220, 243);
+}
+
+.top-bar {
+    height: fit-content;
+    border: 2px outset black;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px outset black;
+}
+#user-status {
+    background-color: lightblue;
+    border: 2px solid black;
+    padding: 2px;
+    margin: 3px;
+    display: flex;
+    height: 48px;
+    width: 200px;
+    justify-content: space-between;
+}
+.user-avatar {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+}
+.signed-out {
+    border-color: brown;
+}
+.signed-in {
+    border-color: aqua;
+}
+#main-user-avatar {
+    background-color: aliceblue;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+}
+#user-status-actual {
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    user-select: none;
+    padding: 2px;
+    border: 2px inset lightcyan;
+    background-color: lightblue;
+    align-self: center;
+    width: 140px;
+    height: 40px;
+    span {
+        align-self: flex-start;
+        font-size: 14px;
+        color: slategray;
+        font-weight: bold;
+    }
+    .main-username {
+        align-self: flex-end;
+        text-align: right;
+        color: black;
+        transform: translate(0, -50%);
     }
 }
