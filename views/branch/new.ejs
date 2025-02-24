@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>TotalRecall Forums | New <%= branchName %> Topic</title>
+</head>
+<body>
+    <main>
+        <%- include('../partials/navbar.ejs') %>
+        <div class="page-content">
+            <h2>
+                New <%= branchName %> Topic
+            </h2>
+            
+            <div class="topic-builder-box">
+                <form action="/user/<%=user.displayname%>/total-recall/<%=
+                    String(branchName).toLowerCase()%>" method="POST">
+                    <textarea name="author_id" id="author_id" style="visibility: hidden; font-size: 0; position: absolute; width: 0; height: 0;">
+                        <%= user._id %>
+                    </textarea>
+
+                    <label for="title">Title: *</label>
+                    <input type="text" name="title" id="title" />
+
+                    <label for="content">Content: *</label>
+                    <textarea name="content" id="content"></textarea>
+
+                    <label for="linked">Link an image:</label>
+                    <input type="text" name="linked" id="linked" />
+
+                    <button type="submit">Post</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>

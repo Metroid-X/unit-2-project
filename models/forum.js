@@ -6,14 +6,19 @@ const Model = mongoose.model;
 
 const User = require('./user.js');
 
+
+
+
+
 const commentSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
     date: {
         type: Date,
-        value: mongoose.now,
+        default: Date.now(),
     },
     content: {
         type: String,
@@ -29,10 +34,11 @@ const topicSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
     date: {
         type: Date,
-        value: mongoose.now
+        default: Date.now(),
     },
     title: {
         type: String,

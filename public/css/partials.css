@@ -1,17 +1,21 @@
 nav {
     justify-self: center;
-    width: 100%;
+    width: calc(100% - 16px);
     max-width: 1024px;
     display: flex;
     flex-direction: column;
+    margin: 8px;
+
     h2 {
-        margin: 10px;
-        align-self: flex-start;
+        margin: 10px 6px;
+        font-size: 200%;
     }
+    
+
     .nav-links {
         border: 2px outset black;
         padding: 2px;
-        border-top: 1px outset black;
+        border-top: 0px outset black;
         padding-left: 0;
         div {
             display: flex;
@@ -34,7 +38,7 @@ nav {
     padding: 2px 0;
     user-select: none;
     
-    
+
     color: darkblue;
     font-weight: bold;
     
@@ -115,7 +119,7 @@ nav {
             }
         }
     }
-
+    
 
 }
 
@@ -128,41 +132,61 @@ nav {
 }
 
 .top-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     height: fit-content;
     border: 2px outset black;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px outset black;
+    border-bottom: 0px outset black;
 }
 #user-status {
+    aspect-ratio: 198 / 48;
     background-color: lightblue;
     border: 2px solid black;
     padding: 2px;
-    margin: 3px;
+    margin: 2px;
     display: flex;
     height: 48px;
-    width: 200px;
     justify-content: space-between;
+    align-items: center;
 }
+
 .user-avatar {
+    aspect-ratio: 1;
     border: 3px solid royalblue;
     border-radius: 50%;
-    width: 24px;
     height: 24px;
+    margin-left: 2px;
+    img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+    }
 }
+
+
+
 .signed-out {
     border-color: brown;
 }
+
+
 .signed-in {
     border-color: aqua;
 }
+
+
 #main-user-avatar {
     background-color: aliceblue;
-    width: 40px;
-    height: 40px;
-    margin: 2px;
+    height: calc(100% - 4px);
 }
+
+
 #user-status-actual {
+    aspect-ratio: 14 / 4;
+    position: relative;
     display: flex;
     flex-direction: column;
     pointer-events: none;
@@ -171,18 +195,110 @@ nav {
     border: 2px inset lightcyan;
     background-color: lightblue;
     align-self: center;
-    width: 140px;
-    height: 40px;
+    height: calc(100% - 8px);
     span {
-        align-self: flex-start;
+        position: absolute;
+        left: 2%;
+        top: 4%;
         font-size: 14px;
         color: slategray;
         font-weight: bold;
     }
     .main-username {
-        align-self: flex-end;
+        left: 98%;
+        top: 96%;
+        transform: translate(-100%,-100%);
         text-align: right;
         color: black;
-        transform: translate(0, -50%);
+    }
+}
+
+@media screen and (min-width: 550px) {
+    .mobile-user-icon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 549px) and (min-width: 425px) {
+
+    nav {
+
+        width: calc(100% - 8px);
+        margin: 4px;
+
+        h2 {
+            margin: 6px 4px;
+            font-size: 180%;
+        }
+    }
+
+    .mobile-user-icon {
+        border: 2px solid black;
+        background-color: lightblue;
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        font-size: 12.5px;
+        font-weight: bold;
+        height: 34px;
+        width: fit-content;
+        margin: 2px;
+        padding: 2px;
+    }
+
+    .main-username {
+        height: fit-content;
+    }
+
+    .user-avatar {
+        aspect-ratio: 1;
+        border-width: 2px;
+    }
+
+    #user-status {
+        display: none;
+        min-width: 160px;
+        height: 36px;
+
+    }
+}
+
+@media screen and (max-width: 424px) {
+    
+    nav {
+
+        width: calc(100% - 8px);
+        margin: 4px;
+
+        h2 {
+            margin: 4px 2px;
+            font-size: 116%;
+        }
+    }
+
+    .mobile-user-icon {
+        border: 2px solid black;
+        background-color: lightblue;
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        font-size: 11.5px;
+        font-weight: bold;
+        height: 26px;
+        width: fit-content;
+        margin: 2px;
+        padding: 2px;
+    }
+
+    .authlink {
+        font-size: 12px;
+        height: 14px;
+    }
+
+    #user-status {
+        display: none;
+        min-width: 160px;
+        height: 36px;
+
     }
 }

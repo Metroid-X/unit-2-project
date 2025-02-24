@@ -9,8 +9,11 @@ const session = require('express-session');
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
+const homebrew = require('./homebrew_functions.js')
+
 const authController = require('./controllers/auth.js');
-const topicsController = require('./controllers/topics.js');
+const forumController = require('./controllers/forum.js');
+
 
 const port = process.env.PORT ? process.env.PORT : '3001';
 
@@ -40,22 +43,22 @@ app.use(
   })
 );
 
+
 app.use(passUserToView); // use new passUserToView middleware here
 
 // ROUTES
 
-// app.get('/', (req, res) => {
-//     res.redirect('/guest/forums');
-// });
-
-
-// // The user does not need to be redirected when on the
-// // index page, as all changes are handled on the index
-// // page itself.
 app.get('/', (req, res) => {
+    res.redirect('/total-recall');
+});
+
+
+
+
+app.get('/total-recall', (req, res) => {
     // check if we're signed in
     if(req.session.user){
-        res.redirect(`/${req.session.user.displayname}/forums`);
+        res.redirect(`/user/${req.session.user.displayname}/total-recall`);
     } else {
         res.render('index.ejs', {
         });
@@ -68,7 +71,7 @@ app.get('/', (req, res) => {
 
   app.use('/auth', authController);
   app.use(isSignedIn);
-  app.use(`/:userName/forums`, topicsController);
+  app.use('/user/:userName/total-recall/', forumController);
   
   app.listen(port, () => {
     console.log(`The express app is ready on port ${port}!`);

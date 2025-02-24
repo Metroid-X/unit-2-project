@@ -14,7 +14,7 @@ router.get('/sign-in', (req, res) => {
 
 router.get('/sign-out', (req, res) => {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect('/total-recall');
 });
 
 router.post('/sign-up', async (req, res) => {
@@ -79,7 +79,7 @@ router.post('/sign-in', async (req, res) => {
             linked_user_img: userInDatabase.linkedavatar,
         };
         
-        res.redirect('/');
+        res.redirect('/total-recall');
     } catch (error) {
         console.log(error);
         res.redirect('/');

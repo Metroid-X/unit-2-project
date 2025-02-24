@@ -10,25 +10,30 @@
     <main>
         <%- include('../partials/navbar.ejs') %>
 
-        <div class="sign-up-container">
-            <h2 style="margin-bottom: 0px;">Create Your Account!</h2>
-            <sub>Fill in the fields below.</sub>
-            <form action="/auth/sign-up" method="POST">
-                
-                <label for="displayname">Display Name:</label>
-                <input type="text" name="displayname" id="displayname" maxlength="20"/>
+        <div class="page-content">
+            <div class="sign-up-container">
+                <h2 style="margin-bottom: 0px;">Create Your Account!</h2>
+                <sub>Fill in the fields below.</sub>
+                <form action="/auth/sign-up" method="POST">
+                    
+                    <label for="linkedavatar">Submit The URL For Your Avatar:</label>
+                    <input type="text/url" name="linkedavatar" id="linkedavatar" />
 
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" />
+                    <label for="displayname">* Display Name:</label>
+                    <input type="text" name="displayname" id="displayname" maxlength="20"/>
 
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" />
-                
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" />
-                
-                <button type="submit">Sign Up</button>
-            </form>
+                    <label for="username">* Username:</label>
+                    <input type="text" name="username" id="username" />
+
+                    <label for="password">* Password:</label>
+                    <input type="password" name="password" id="password" />
+                    
+                    <label for="confirmPassword">* Confirm Password:</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" />
+                    
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
         </div>
     </main>
 </body>

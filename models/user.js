@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
 
-const Forum = require('./topic.js')
+const Forum = require('./forum.js')
 
 
 

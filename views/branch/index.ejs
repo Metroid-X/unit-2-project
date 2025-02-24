@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TotalRecall Forums <%= branchName %></title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>TotalRecall Forums | <%= branchName %></title>
 </head>
 <body>
     <main>
         <%- include('../partials/navbar.ejs') %>
-        <h1><%= branchName %> Discussion Forum</h1>
-        <ul>
-        </ul>
+        <div class="page-content">
+            <h1>
+                <%= branchName %> Discussion Forum
+                <br><% if(user) { %>
+                    <a href="/user/<%=user.displayname%>/total-recall/<%=
+                        String(branchName).toLowerCase()%>/new">Create New Topic Here</a>
+                <% } %>
+            </h1>
+            <% if(forumBranch.topics.length > 0) { %>
+                <% forumBranch.topics.forEach((topic)=>{ %>
+                    <div class="topic-preview-box">
+                        <h3><%= topic.title %></h3>
+                        <sub>Author: <%= getAuthor(topic,"author_id",userModel).displayname %></sub>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="topic-preview-box">
+                    <p>Looks like there aren't any topics in this forum branch...</p>
+                    
+                </div>
+            <% } %>
+        </div>
     </main>
 </body>
 </html>

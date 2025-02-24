@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user.js');
-const Forum = require('../models/topic.js');
+const Forum = require('../models/forum.js');
 
 const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -33,8 +33,6 @@ router.get('/:forumBranch', async (req, res) => {
         const currentBranch = await Forum.findOne({ forum_branch: req.params.forumBranch});
         const branchName = await currentBranch.forum_branch
 
-
-
         res.render('branch/index.ejs', {
             user: req.session.user,
             forumBranch: currentBranch,
@@ -45,5 +43,7 @@ router.get('/:forumBranch', async (req, res) => {
         res.redirect('/');
     }
 });
+
+
 
 module.exports = router;
