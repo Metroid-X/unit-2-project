@@ -14,7 +14,6 @@ const commentSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
     },
     date: {
         type: Date,
@@ -34,7 +33,6 @@ const topicSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
     },
     date: {
         type: Date,
@@ -62,6 +60,41 @@ const forumSchema = Schema({
     },
     topics: [topicSchema],
 });
+
+// const userSchema = new Schema({
+//     displayname: {
+//         type: String,
+//         required: true,
+//     },
+//     linkedavatar: {
+//         type: String,
+//         reqired: false,
+//     },
+//     username: {
+//         type: String,
+//         required: true,
+//     },
+//     password: {
+//         type: String,
+//         required: true,
+//     },
+//     // topics: [topicSchema], // embedding the topicSchema here
+// });
+
+// const forumSchema = Schema({
+//     branches: {
+//         main: {
+//             topics: [topicSchema],
+//         },
+//         art: {
+//             topics: [topicSchema],
+//         },
+//         games: {
+//             topics: [topicSchema],
+//         },
+//     },
+//     users: [userSchema],
+// })
 
 const Forum = Model('Forum', forumSchema);
 

@@ -60,6 +60,52 @@ const homebrew = {
     getObjectFromID: getObjectFromID = (obj, ref_Id, model) => {
         return model.findById(obj[ref_Id]);
     },
+    /**
+     * Build a new topics Array that fetches the author objects from their _id via the author_id property of each topic.
+     * @param {Object} obj The branch Object with the topics to rebuild.
+     * @param {Function} model The User Model.
+     * 
+     * @returns {Array} the new topics Array to pass into the page.
+     */
+    getNewTopicsArray: getNewTopicsArray = (obj, model) => {
+        let topicsArr=[];
+
+            obj.topics.forEach((topic)=>{
+                topicsArr.push({
+                    author: User.findById(topic.author_id),
+                    date: topic.date,
+                    title: topic.title,
+                    content: topic.content,
+                    linked: topic.linked,
+                    _id: topic._id,
+                    comments: topic.comments,
+                });
+            });
+
+        return topicsArr
+    },
+
+    conciseDate: conciseDate = (date) => {
+        const months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+        ]
+
+
+        return `${months[date.getMonth()]} 
+                ${date.getDate()}, 
+                ${date.getFullYear()}`
+    },
 };
 
 

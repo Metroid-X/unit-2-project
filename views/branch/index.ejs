@@ -13,16 +13,61 @@
             <h1>
                 <%= branchName %> Discussion Forum
                 <br><% if(user) { %>
-                    <a href="/user/<%=user.displayname%>/total-recall/<%=
+                    <a href="/<%=user.displayname%>/total-recall/<%=
                         String(branchName).toLowerCase()%>/new">Create New Topic Here</a>
                 <% } %>
             </h1>
-            <% if(forumBranch.topics.length > 0) { %>
-                <% forumBranch.topics.forEach((topic)=>{ %>
+            <% if(topics.length > 0) { %>
+                <% topics.forEach((topic)=>{ %>
+                    
                     <div class="topic-preview-box">
-                        <h3><%= topic.title %></h3>
-                        <sub>Author: <%= getAuthor(topic,"author_id",userModel).displayname %></sub>
+                        <div class="topic-heading">
+                            <h2>
+                                <a href="/<%=user.displayname%>/total-recall/<%=String(branchName).toLowerCase()%>/<%=(topic.title).replaceAll(' ', '-')%>/<%=topic._id%>">
+                                    <%= topic.title %>
+                                </a>
+                            </h2>
+                            <hr>
+                            <div class="topic-author-heading">
+                                <div class="user-tag-box">
+                                    <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %>"
+                                        href="/total-recall/users/<%=topic.author.displayname%>">
+                                        <img src=
+                                        '
+                                        <% if(topic.author.linkedavatar!==undefined & "") { %>
+                                            <%= topic.author.linkedavatar %>
+                                        <% } else { %>
+                                            /default_inserts/default_pfp.png
+                                        <% } %>
+                                        '>
+                                    </a>
+                                    
+                                    <div class="topic-etoc">
+                                        <h5>
+                                            <%= topic.author.displayname %>
+                                        </h5>
+                                        <p class="date">
+                                            <%=topic.date%> in TotalRecall <%=branchName%>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="content-preview">
+                            <img src="<%=topic.linked%>" class="linked-preview linked">
+                            <p>
+                                <%=topic.content%>
+                                <br>
+                                <% if(topic.comments.length !== 0) { %>
+                                    ...
+                                    <em style="color: lightcyan;">later, someone said:</em>
+                                    <br>
+                                    <%= topic.comments.pop().content %>
+                                <% } %>
+                            </p>
+                        </span>
                     </div>
+                    
                 <% }) %>
             <% } else { %>
                 <div class="topic-preview-box">

@@ -15,8 +15,8 @@
             </h2>
             
             <div class="topic-builder-box">
-                <form action="/user/<%=user.displayname%>/total-recall/<%=
-                    String(branchName).toLowerCase()%>" method="POST">
+                <form action="/<%=user.displayname%>/total-recall/<%=
+                    String(branchName).toLowerCase()%>/" method="POST">
                     <textarea name="author_id" id="author_id" style="visibility: hidden; font-size: 0; position: absolute; width: 0; height: 0;">
                         <%= user._id %>
                     </textarea>

@@ -50,13 +50,13 @@
     <div class="nav-links">
         <% if(user) { %>
             <div style="margin-bottom: 2px;">
-                <a class="authlink" href="/user/<%=user.displayname%>/total-recall/main">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/main">
                     Main Forum
                 </a>
-                <a class="authlink" href="/user/<%=user.displayname%>/total-recall/art">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/art">
                     Art Forum
                 </a>
-                <a class="authlink" href="/user/<%=user.displayname%>/total-recall/games">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/games">
                     Games Forum
                 </a>
             </div>
@@ -67,15 +67,15 @@
                     <details>
                         <summary>New Topic</summary>
                         <div>
-                            <a href="/user/<%=user.displayname%>/total-recall/main/new">
+                            <a href="/<%=user.displayname%>/total-recall/main/new">
                                 <p class="shadow">Main Forum</p>
                                 <p>Main Forum</p>
                             </a>
-                            <a href="/user/<%=user.displayname%>/total-recall/art/new">
+                            <a href="/<%=user.displayname%>/total-recall/art/new">
                                 <p class="shadow">Art Forum</p>
                                 <p>Art Forum</p>
                             </a>
-                            <a href="/user/<%=user.displayname%>/total-recall/games/new">
+                            <a href="/<%=user.displayname%>/total-recall/games/new">
                                 <p class="shadow">Games Forum</p>
                                 <p>Games Forum</p>
                             </a>

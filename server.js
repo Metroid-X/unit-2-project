@@ -13,9 +13,9 @@ const homebrew = require('./homebrew_functions.js')
 
 const authController = require('./controllers/auth.js');
 const forumController = require('./controllers/forum.js');
+const profileController = require('./controllers/profile.js');
 
-
-const port = process.env.PORT ? process.env.PORT : '3001';
+const port = process.env.PORT ? process.env.PORT : '3000';
 
 const path = require('path');
 
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 app.get('/total-recall', (req, res) => {
     // check if we're signed in
     if(req.session.user){
-        res.redirect(`/user/${req.session.user.displayname}/total-recall`);
+        res.redirect(`/${req.session.user.displayname}/total-recall`);
     } else {
         res.render('index.ejs', {
         });
@@ -71,9 +71,12 @@ app.get('/total-recall', (req, res) => {
 
   app.use('/auth', authController);
   app.use(isSignedIn);
-  app.use('/user/:userName/total-recall/', forumController);
+  app.use('/:userName/total-recall', forumController);
+  app.use('/total-recall/user/:userId', profileController);
+
   
   app.listen(port, () => {
     console.log(`The express app is ready on port ${port}!`);
   });
     
+

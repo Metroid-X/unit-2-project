@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/partials.css">
+
+
+
+<div class="user-tag-box">
+    <% if(user._id)
+    <div class="user-avatar">
+        <% if(user.linked_user_img !== undefined & "") { %>
+            <img src="<%= user.linked_user_img %>">
+        <% } else { %>
+            <img src="/default_inserts/default_pfp.png">
+        <% } %>
+    </div>
+</div>

@@ -166,8 +166,6 @@ nav {
     }
 }
 
-
-
 .signed-out {
     border-color: brown;
 }
@@ -178,10 +176,6 @@ nav {
 }
 
 
-#main-user-avatar {
-    background-color: aliceblue;
-    height: calc(100% - 4px);
-}
 
 
 #user-status-actual {
@@ -219,7 +213,7 @@ nav {
     }
 }
 
-@media screen and (max-width: 549px) and (min-width: 425px) {
+@media screen and (max-width: 550px) and (min-width: 425px) {
 
     nav {
 
@@ -238,6 +232,8 @@ nav {
         align-self: center;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        aspect-ratio: 14 / 4;
         font-size: 12.5px;
         font-weight: bold;
         height: 34px;
@@ -282,6 +278,8 @@ nav {
         align-self: center;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        aspect-ratio: 18 / 4;
         font-size: 11.5px;
         font-weight: bold;
         height: 26px;
@@ -301,4 +299,12 @@ nav {
         height: 36px;
 
     }
+}
+
+
+#main-user-avatar {
+    background-color: aliceblue;
+    height: calc(100% - 4px);
+    aspect-ratio: 1;
+    align-self: center;
 }

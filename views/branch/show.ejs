@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title><%=topic.title%> | <%=author.displayname%> | TotalRecall Forums</title>
+</head>
+<body>
+    <main>
+        <%- include('../partials/navbar.ejs') %>
+        <div class="page-content">
+            <div class="topic-heading">
+                <h2><%=topic.title%></h2>
+                <hr>
+                <div class="topic-author-heading" class="topic-header">
+                    <div class="user-tag-box">
+                        <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %>"
+                            href="/total-recall/users/<%=author.displayname%>">
+                            <img src=
+                            '
+                            <% if(author.linkedavatar!==undefined & "") { %>
+                                <%= author.linkedavatar %>
+                            <% } else { %>
+                                /default_inserts/default_pfp.png
+                            <% } %>
+                            '>
+                        </a>
+                        <div class="topic-etoc">
+                            <h5>
+                                <%= author.displayname %>
+                            </h5>
+                            <p class="date">
+                                <%=topicDate%> in TotalRecall <%=branchName%>
+                            </p>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+            
+                <div class="content">
+                    <img src="<%=topic.linked%>" class="linked">
+                    <p>
+                        <%=topic.content%>
+                        <br>
+                        <% if(topic.comments.length !== 0) { %>
+                            ...
+                            <em style="color: lightcyan;">later, someone said:</em>
+                            <br>
+                            <%= topic.comments.pop().content %>
+                        <% } %>
+                    </p>
+                </div>
+            
+        </div>
+    </main>
+</body>
+</html>
