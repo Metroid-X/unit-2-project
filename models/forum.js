@@ -19,6 +19,10 @@ const commentSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    date_updated: {
+        type: Date,
+        default: Date.now(),
+    },
     content: {
         type: String,
         required: true,
@@ -38,6 +42,14 @@ const topicSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    date_updated: {
+        type: Date,
+        default: Date.now(),
+    },
+    date_active: {
+        type: Date,
+        default: Date.now(),
+    },
     title: {
         type: String,
         required: true,
@@ -50,7 +62,7 @@ const topicSchema = new Schema({
         type: String,
         required: false,
     },
-    comments: [commentSchema]
+    comments: [commentSchema],
 });
 
 const forumSchema = Schema({

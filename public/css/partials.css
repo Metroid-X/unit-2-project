@@ -179,7 +179,7 @@ nav {
 
 
 #user-status-actual {
-    aspect-ratio: 14 / 4;
+    aspect-ratio: 7 / 2;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -233,7 +233,7 @@ nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        aspect-ratio: 14 / 4;
+        aspect-ratio: 15 / 4;
         font-size: 12.5px;
         font-weight: bold;
         height: 34px;
@@ -279,7 +279,7 @@ nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        aspect-ratio: 18 / 4;
+        aspect-ratio: 9 / 2;
         font-size: 11.5px;
         font-weight: bold;
         height: 26px;

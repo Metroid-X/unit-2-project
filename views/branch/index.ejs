@@ -28,28 +28,27 @@
                                 </a>
                             </h2>
                             <hr>
-                            <div class="topic-author-heading">
-                                <div class="user-tag-box">
-                                    <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %>"
-                                        href="/total-recall/users/<%=topic.author.displayname%>">
-                                        <img src=
-                                        '
-                                        <% if(topic.author.linkedavatar!==undefined & "") { %>
-                                            <%= topic.author.linkedavatar %>
-                                        <% } else { %>
-                                            /default_inserts/default_pfp.png
-                                        <% } %>
-                                        '>
-                                    </a>
-                                    
-                                    <div class="topic-etoc">
-                                        <h5>
-                                            <%= topic.author.displayname %>
-                                        </h5>
-                                        <p class="date">
-                                            <%=topic.date%> in TotalRecall <%=branchName%>
-                                        </p>
-                                    </div>
+
+                            <div class="user-tag-box">
+                                <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %>"
+                                    href="/total-recall/users/<%=topic.author.displayname%>">
+                                    <img src=
+                                    '
+                                    <% if(topic.author.linkedavatar!==undefined & "") { %>
+                                        <%= topic.author.linkedavatar %>
+                                    <% } else { %>
+                                        /default_inserts/default_pfp.png
+                                    <% } %>
+                                    '>
+                                </a>
+                                
+                                <div class="topic-etoc">
+                                    <h5>
+                                        <%= topic.author.displayname %>
+                                    </h5>
+                                    <p class="date">
+                                        <%=topic.date.concise%> in TotalRecall <%=branchName%>
+                                    </p>
                                 </div>
                             </div>
                         </div>

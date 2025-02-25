@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <title><%=topic.title%> | <%=author.displayname%> | TotalRecall Forums</title>
+    <title>Editing Comment | <%=topic.title%> | <%=author.displayname%> | TotalRecall Forums</title>
 </head>
 <body>
     <main>
@@ -66,7 +66,7 @@
                                     String(branchName).toLowerCase()%>/<%=
                                     (topic.title).replaceAll(' ', '-')%>/<%=
                                     topic._id%>?_method=DELETE" method="POST">
-                                    <button class="del" type="submit">delete topic</button>
+                                    <button class="del" type="submit">delete comment</button>
                                 </form>
                                 <a href="/<%=user.displayname%>/total-recall/<%=
                                     String(branchName).toLowerCase()%>/<%=
@@ -143,13 +143,14 @@
                     <div class="post-box">
                         <form action="/<%=user.displayname%>/total-recall/<%=
                             String(branchName).toLowerCase()%>/<%=
-                            (topic.title).replaceAll(' ', '-')%>/<%=topic._id%>" method="POST">
+                            (topic.title).replaceAll(' ', '-')%>/<%=
+                            topic._id%>/<%=currentComment._id%>?_method=PUT" method="POST">
         
-                            <label for="commentcontent">Content: *</label>
-                            <textarea name="commentcontent" id="commentcontent"></textarea>
+                            <label for="content">Content: *</label>
+                            <textarea name="content" id="content"><%=currentComment.content%></textarea>
         
-                            <label for="commentlinked">Link an image:</label>
-                            <input type="text" name="commentlinked" id="commentlinked" />
+                            <label for="linked">Link an image:</label>
+                            <input type="text" name="linked" id="linked" value="<%=currentComment.linked%>"/>
         
                             <button type="submit">Post</button>
                         </form>
