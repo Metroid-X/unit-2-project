@@ -34,7 +34,7 @@
                                     href="/total-recall/users/<%=topic.author.displayname%>">
                                     <img src=
                                     '
-                                    <% if(topic.author.linkedavatar!==undefined & "") { %>
+                                    <% if(topic.author.linkedavatar!=="") { %>
                                         <%= topic.author.linkedavatar %>
                                     <% } else { %>
                                         /default_inserts/default_pfp.png

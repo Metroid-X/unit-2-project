@@ -19,7 +19,7 @@
                         href="/total-recall/users/<%=author.displayname%>">
                         <img src=
                         '
-                        <% if(author.linkedavatar!==undefined & "") { %>
+                        <% if(author.linkedavatar!=="") { %>
                             <%= author.linkedavatar %>
                         <% } else { %>
                             /default_inserts/default_pfp.png
@@ -43,7 +43,7 @@
                         href="/total-recall/users/<%=author.displayname%>">
                         <img src=
                         '
-                        <% if(author.linkedavatar!==undefined & "") { %>
+                        <% if(author.linkedavatar!=="") { %>
                             <%= author.linkedavatar %>
                         <% } else { %>
                             /default_inserts/default_pfp.png
@@ -91,7 +91,7 @@
                                 href="/total-recall/users/<%=comment.author.displayname%>">
                                 <img src=
                                 '
-                                <% if(comment.author.linkedavatar!==undefined & "") { %>
+                                <% if(comment.author.linkedavatar!=="") { %>
                                     <%= comment.author.linkedavatar %>
                                 <% } else { %>
                                     /default_inserts/default_pfp.png
