@@ -1,3 +1,3 @@
 # TotalRecall Forums
 A forum app for discussing just about anthing with anyone.
-![alt text](https://github.com/Metroid-X/unit-2-project/blob/main/abc123_mvp_target/Target%20for%20MVP%20(project%202).png))
+<img src="https://github.com/Metroid-X/unit-2-project/blob/main/abc123_mvp_target/Target%20for%20MVP%20(project%202).png" style="width:400px;">
