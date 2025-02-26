@@ -1,4 +1,8 @@
 nav {
+
+    background-color: steelblue;
+
+
     justify-self: center;
     width: calc(100% - 16px);
     max-width: 1024px;
@@ -7,8 +11,23 @@ nav {
     margin: 8px;
 
     h2 {
+        position: relative;
+        color: rgba(0,0,0,0);
         margin: 10px 6px;
         font-size: 200%;
+
+        span {
+            left: 0;
+            position: absolute;
+            color: darkorange;
+            z-index: 2;
+        }
+
+        .shadow {
+            -webkit-text-stroke: 3px white;
+            z-index: 0;
+        }
+
     }
     
 
