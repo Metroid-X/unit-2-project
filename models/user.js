@@ -15,6 +15,7 @@ const userSchema = Schema({
     linkedavatar: {
         type: String,
         reqired: false,
+        default: '/default_inserts/default_pfp.png',
     },
     username: {
         type: String,

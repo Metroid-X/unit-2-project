@@ -21,9 +21,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc(100% - 36px);
+    width: calc(100% - 40px);
     border: 2px solid black;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     padding: 10px;
     padding-bottom: 8px;
     h1 {

@@ -14,13 +14,14 @@
                     <span>Signed in as:</span>
                     <span class="main-username"><%= user.displayname %></span>
                 </div>
-                <div id="main-user-avatar" class="user-avatar signed-in">
-                    <% if(user.linked_user_img !== undefined & "") { %>
+                <a id="main-user-avatar" class="user-avatar signed-in"
+                href="/total-recall/user/<%= user.displayname %>/<%= user._id %>">
+                    <% if(user.linked_user_img !=="") { %>
                         <img src="<%= user.linked_user_img %>">
                     <% } else { %>
                         <img src="/default_inserts/default_pfp.png">
                     <% } %>
-                </div>
+                    </a>
             <% } else { %>
                 <div id="user-status-actual">
                     <span>Not currently signed in</span>
@@ -34,13 +35,14 @@
         <div class="mobile-user-icon">
             <% if(user) { %>
                 <div class="main-username"><%= user.displayname %></div>
-                <div id="main-user-avatar" class="user-avatar signed-in">
-                    <% if(user.linked_user_img !== undefined & "") { %>
+                <a id="main-user-avatar" class="user-avatar signed-in"
+                href="/total-recall/user/<%= user.displayname %>/<%= user._id %>">
+                    <% if(user.linked_user_img !=="") { %>
                         <img src="<%= user.linked_user_img %>">
                     <% } else { %>
                         <img src="/default_inserts/default_pfp.png">
                     <% } %>
-                </div>
+                    </a>
             <% } else { %>
                 <div class="main-username">Guest</div>
                 <div id="main-user-avatar" class="user-avatar signed-out">

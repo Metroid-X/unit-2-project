@@ -89,14 +89,11 @@ router.get('/:forumBranch', async (req, res) => {
 
 
             topicObj.author_id=topic.author_id;
-            topicObj.date = {
-                concise: homebrew.conciseDate(topic.date),
-                real: topic.date,
-            };
-            topicObj.dateUpdated = {
-                concise: homebrew.conciseDate(topic.date_updated),
-                real: topic.date_updated,
-            };
+            
+            topicObj.date = homebrew.getDatePair(topic.date,new Date(Date.now()));
+        
+            topicObj.dateUpdated = homebrew.getDatePair(topic.date_updated,new Date(Date.now()));
+
             topicObj.dateActive = topic.date_active;
             topicObj.title = topic.title;
             topicObj.content = topic.content;
@@ -216,14 +213,8 @@ router.get('/:forumBranch/:topicName/:topicId', async (req, res) => {
             const commentObj = {
                 author_id: comment.author_id,
                 author: allUsersObj[String(comment.author_id)],
-                date: {
-                    concise: homebrew.conciseDate(currentTopic.date),
-                    real: currentTopic.date,
-                },
-                dateUpdated: {
-                    concise: homebrew.conciseDate(currentTopic.date_updated),
-                    real: currentTopic.date_updated,
-                },
+                date: homebrew.getDatePair(comment.date,new Date(Date.now())),
+                dateUpdated: homebrew.getDatePair(comment.date_updated,new Date(Date.now())),
                 content: comment.content,
                 linked: comment.linked,
                 _id: comment._id,
@@ -237,15 +228,12 @@ router.get('/:forumBranch/:topicName/:topicId', async (req, res) => {
         
         currentTopic.author = await topicAuthor;
 
-        const topicDate = {
-            concise: homebrew.conciseDate(currentTopic.date),
-            real: currentTopic.date,
-        };
-        const topicUpdated = {
-            concise: homebrew.conciseDate(currentTopic.date_updated),
-            real: currentTopic.date_updated,
-        };
-        if(topicComments.length===currentTopic.comments.length){
+        const topicDate = homebrew.getDatePair( currentTopic.date,new Date(Date.now()));
+        
+        const topicUpdated = homebrew.getDatePair( currentTopic.date_updated,new Date(Date.now()));
+
+
+        if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/show.ejs', {
                 user: currentUser,
                 author: topicAuthor,
@@ -297,14 +285,8 @@ router.get('/:forumBranch/:topicName/:topicId/edit', async (req,res) => {
             const commentObj = {
                 author_id: comment.author_id,
                 author: allUsersObj[String(comment.author_id)],
-                date: {
-                    concise: homebrew.conciseDate(currentTopic.date),
-                    real: currentTopic.date,
-                },
-                dateUpdated: {
-                    concise: homebrew.conciseDate(currentTopic.date_updated),
-                    real: currentTopic.date_updated,
-                },
+                date: homebrew.getDatePair(comment.date,new Date(Date.now())),
+                dateUpdated: homebrew.getDatePair(comment.date_updated,new Date(Date.now())),
                 content: comment.content,
                 linked: comment.linked,
                 _id: comment._id,
@@ -318,15 +300,13 @@ router.get('/:forumBranch/:topicName/:topicId/edit', async (req,res) => {
         
         currentTopic.author = await topicAuthor;
 
-        const topicDate = {
-            concise: homebrew.conciseDate(currentTopic.date),
-            real: currentTopic.date,
-        };
-        const topicUpdated = {
-            concise: homebrew.conciseDate(currentTopic.date_updated),
-            real: currentTopic.date_updated,
-        };
-        if(topicComments.length===currentTopic.comments.length){
+        const topicDate = homebrew.getDatePair( currentTopic.date,new Date(Date.now()));
+        
+        const topicUpdated = homebrew.getDatePair( currentTopic.date_updated,new Date(Date.now()));
+
+
+
+        if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/topic_edit.ejs', {
                 user: currentUser,
                 author: topicAuthor,
@@ -460,14 +440,8 @@ router.get('/:forumBranch/:topicName/:topicId/:commentId/edit', async (req,res) 
             const commentObj = {
                 author_id: comment.author_id,
                 author: allUsersObj[String(comment.author_id)],
-                date: {
-                    concise: homebrew.conciseDate(currentTopic.date),
-                    real: currentTopic.date,
-                },
-                dateUpdated: {
-                    concise: homebrew.conciseDate(currentTopic.date_updated),
-                    real: currentTopic.date_updated,
-                },
+                date: homebrew.getDatePair(comment.date,new Date(Date.now())),
+                dateUpdated: homebrew.getDatePair(comment.date_updated,new Date(Date.now())),
                 content: comment.content,
                 linked: comment.linked,
                 _id: comment._id,
@@ -481,16 +455,12 @@ router.get('/:forumBranch/:topicName/:topicId/:commentId/edit', async (req,res) 
         
         currentTopic.author = await topicAuthor;
 
-        const topicDate = {
-            concise: homebrew.conciseDate(currentTopic.date),
-            real: currentTopic.date,
-        };
-        const topicUpdated = {
-            concise: homebrew.conciseDate(currentTopic.date_updated),
-            real: currentTopic.date_updated,
-        };
+        const topicDate = homebrew.getDatePair(currentTopic.date,new Date(Date.now()));
+        
+        const topicUpdated = homebrew.getDatePair(currentTopic.date_updated,new Date(Date.now()));
 
-        if(topicComments.length===currentTopic.comments.length){
+
+        if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/comment_edit.ejs', {
                 user: currentUser,
                 author: topicAuthor,

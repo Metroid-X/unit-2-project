@@ -7,8 +7,12 @@ const User = require('./models/user.js')
 
 
 
-
-
+const floor = (n) => {
+    return Math.floor(n)
+}
+const round = (n) => {
+    return Math.round(n)
+}
 
 
 const homebrew = {
@@ -106,7 +110,214 @@ const homebrew = {
                 ${date.getDate()}, 
                 ${date.getFullYear()}`
     },
-};
+    perYear: perYear = () => {
+        const daysPerYear = 365.242374;
+        const hoursPerYear = (daysPerYear*24);
+        const minutesPerYear = (hoursPerYear*60);
+        const secondsPerYear = (minutesPerYear*60); 
+        const millisecondsPerYear = (secondsPerYear*1000); 
 
+        
+
+
+        return {
+            days: daysPerYear,
+            oneMinute: 60000,
+            oneHour: 3600000,
+            oneDay: 86400000,
+            oneWeek: 1,
+            oneMonth: 1,
+            oneYear: 1,
+            oneDecade: 1,
+        }
+    },
+    getDatePair: getDatePair = (date1, date2) => {
+        
+        const yearDiff = date1.getUTCFullYear()-date2.getUTCFullYear();
+        const monthDiff = date1.getUTCMonth()-date2.getUTCMonth();
+        const weekDiff = Math.floor(Number(date2-date1)/604800000);
+        const dayDiff = date1.getUTCDate()-date2.getUTCDate();
+        const hourDiff = date1.getUTCHours()-date2.getUTCHours();
+        const minuteDiff = date1.getUTCMinutes()-date2.getUTCMinutes();
+        const secondDiff = date1.getUTCSeconds()-date2.getUTCSeconds();
+        
+
+        let result = {
+            // If all else fails, fall back on the actual date alone.
+            concise: `${homebrew.conciseDate(date1)}`,
+
+            real: date1,
+        };
+        let yearAmount =    '';
+        let monthAmount =   '';
+        let weekAmount =   '';
+        let dayAmount =     '';
+        let hourAmount =    '';
+        let minuteAmount =  '';
+        let secondAmount =  '';
+
+        
+        const millisecondsPerYear = Math.floor(86400000*365.242374);
+        const millisecondsPerMonth = Math.floor(86400000*30.4167);
+
+        const otherYearDiff = Math.floor(Number(date2-date1)/millisecondsPerYear);
+        const otherMonthDiff = Math.floor(Number(date2-date1)/millisecondsPerMonth);
+
+
+
+
+            if( -yearDiff >= 1) {
+                // if at least one year
+                if( -yearDiff == 1) {
+                    // if exactly one year
+                    switch(Math.sign(monthDiff)) {
+                        case(-1):
+                            // if a month or more into next year
+                            if(Math.abs(monthDiff) > 3) {
+                                yearAmount = 'Over a year ago'
+                            } else {
+                                yearAmount = '1 year ago'
+                            }
+                            break;
+                        case(0):
+                            // if the same month next year
+                            yearAmount = '1 year ago'
+                            break;
+                        case(1):
+                            const monthsFrom = 12-monthDiff
+                            
+                            // if less than twelve months from date1
+                            yearAmount = ''
+                            if(monthsFrom >= 1) {
+                                // if at least one month
+                                if(monthsFrom == 1) {
+                                    // if january of date2; ( yMonths(12) - ( y1dec(11)-y2jan(0) ) = 1 )
+                                    monthAmount = '1 month ago';
+                                } else {
+                                    monthAmount = `${monthDiff} months ago`
+                                }
+                            } else if((date2-date1) >= 604800000){
+                                // if at least one week
+                                if(weekDiff == -1){
+                                    weekAmount=`${weekDiff} week ago`;
+                                } else {
+                                    weekAmount=`${weekDiff} weeks ago`;
+                                }
+                            } else if((date2-date1) >= 86400000) {
+                                // if at least one day
+                                if(dayDiff == -1){
+                                    dayAmount=`${dayDiff} day ago`;
+                                } else {
+                                    dayAmount=`${dayDiff} days ago`;
+                                }
+                            } else if((date2-date1) >= 3600000){
+                                // if at least one hour
+                                if(hourDiff == -1){
+                                    hourAmount=`${hourDiff} hour ago`;
+                                } else {
+                                    hourAmount=`${hourDiff} hours`;
+                                }
+                            } else if((date2-date1) >= 600000){
+                                // if at least one minute
+                                if(minuteDiff == -1){
+                                    minuteAmount=`${minuteDiff} minute ago`;
+                                } else {
+                                    minuteAmount=`${minuteDiff} minutes ago`;
+                                }
+                            } else if((date2-date1) >= 10000){
+                                // if at least one second
+                                if(secondDiff == -1){
+                                    secondAmount=`${secondDiff} second ago`;
+                                } else {
+                                    secondAmount=`${secondDiff} seconds ago`;
+                                }
+                            }
+                            
+                            
+                            break;
+                        default: ;
+                    }
+                } else {
+                    switch(Math.sign(monthDiff)) {
+                        case(-1):
+                            // if a month or more into next year
+                            if(Math.abs(monthDiff) > 3) {
+                                yearAmount = `${yearDiff} years ago`
+                            } else {
+                                yearAmount = `${yearDiff} years ago`
+                            }
+                            break;
+                        case(0):
+                            // if the same month next year
+                            yearAmount = `${yearDiff} years ago`
+                            break;
+                        case(1):
+                            yearAmount = `${yearDiff-1} years ago`
+                            break;
+                        default:;
+                    }
+                }
+            } else {
+                // if the same year
+                if(-monthDiff > 1) {
+                    // if over one month
+                    
+                    monthAmount = `${monthDiff} months ago`
+                    
+                } else if((date2-date1) >= 604800000){
+                    // if at least one week
+                    if(weekDiff == -1){
+                        weekAmount=`${weekDiff} week ago`;
+                    } else {
+                        weekAmount=`${weekDiff} weeks ago`;
+                    }
+                } else if((date2-date1) >= 86400000) {
+                    // if at least one day
+                    if(dayDiff == -1){
+                        dayAmount=`${(round(date2/86400000)-round(date1/86400000))} day ago`;
+                    } else {
+                        dayAmount=`${(round(date2/86400000)-round(date1/86400000))} days ago`;
+                    }
+                } else if((date2-date1) >= 3600000){
+                    // if at least one hour
+                    if(hourDiff == -1){
+                        hourAmount=`${floor((date2-date1)/3600000)} hour ago`;
+                    } else {
+                        hourAmount=`${floor((date2-date1)/3600000)} hours ago`;
+                    }
+                } else if((date2-date1) >= 600000){
+                    // if at least one minute
+                    if(minuteDiff == -1){
+                        minuteAmount=`${floor((date2-date1)/600000)} minute ago`;
+                    } else {
+                        minuteAmount=`${floor((date2-date1)/600000)} minutes ago`;
+                    }
+                } else if((date2-date1) >= 10000){
+                    // if at least one second
+                    if(secondDiff == -1){
+                        secondAmount=`${floor((date2-date1)/10000)} second ago`;
+                    } else {
+                        secondAmount=`${floor((date2-date1)/10000)} seconds ago`;
+                    }
+                } else if((date2-date1) < 10000){
+                    secondAmount = 'just now'
+                }
+            }
+            
+            if(otherMonthDiff >= 1) {monthAmount = `${otherMonthDiff} months ago`}
+        
+            result.concise = `${secondAmount}${minuteAmount}${hourAmount}${dayAmount}${weekAmount}${monthAmount}${yearAmount} | ${homebrew.conciseDate(date1)}`
+            
+            return result;
+    },
+
+    
+    
+};
+// const date1 = new Date("May 1, 2025 00:0:00");
+// const date2 = new Date("May 2, 2025 00:0:00")
+// const date3 = String(date2 - date1)
+
+// console.log(new Date(Date.now()).getUTCFullYear())
 
 module.exports = homebrew;

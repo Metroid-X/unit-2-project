@@ -42,7 +42,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-
+ 
 
 app.use(passUserToView); // use new passUserToView middleware here
 
@@ -72,7 +72,7 @@ app.get('/total-recall', (req, res) => {
   app.use('/auth', authController);
   app.use(isSignedIn);
   app.use('/:userName/total-recall', forumController);
-  app.use('/total-recall/user/:userId', profileController);
+  app.use('/total-recall/user/:userName/:userId', profileController);
 
   
   app.listen(port, () => {

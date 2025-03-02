@@ -47,7 +47,11 @@
                                         <%= topic.author.displayname %>
                                     </h5>
                                     <p class="date">
-                                        <%=topic.date.concise%> in TotalRecall <%=branchName%>
+                                        <span><%= topic.date.concise %> in TotalRecall <%=branchName%></span>
+                                        <% if(topic.date.real < topic.dateUpdated.real) { %>
+                                            <span>&nbsp;|&nbsp;</span>
+                                            <span>Edited: <%= topic.dateUpdated.concise %></span>
+                                        <% } %>
                                     </p>
                                 </div>
                             </div>
