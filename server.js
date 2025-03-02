@@ -49,16 +49,16 @@ app.use(passUserToView); // use new passUserToView middleware here
 // ROUTES
 
 app.get('/', (req, res) => {
-    res.redirect('/total-recall');
+    res.redirect('/total-recall/forums');
 });
 
 
 
 
-app.get('/total-recall', (req, res) => {
+app.get('/total-recall/forums', (req, res) => {
     // check if we're signed in
     if(req.session.user){
-        res.redirect(`/${req.session.user.displayname}/total-recall`);
+        res.redirect(`/${req.session.user.displayname}/total-recall/forums`);
     } else {
         res.render('index.ejs', {
         });
@@ -71,8 +71,9 @@ app.get('/total-recall', (req, res) => {
 
   app.use('/auth', authController);
   app.use(isSignedIn);
-  app.use('/:userName/total-recall', forumController);
-  app.use('/total-recall/user/:userName/:userId', profileController);
+  app.use('/:userName/total-recall/forums', forumController);
+  app.use('/:userName/total-recall/users', profileController);
+  app.use('/total-recall/users', profileController);
 
   
   app.listen(port, () => {

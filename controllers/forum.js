@@ -33,7 +33,7 @@ const returnUserBase = async(userModelArr) => {
 }
 
 
-        // ROUTES WILL GO HERE
+        // ROUTES GO HERE
 
     // Main Route 
 router.get('/', async (req, res) => {

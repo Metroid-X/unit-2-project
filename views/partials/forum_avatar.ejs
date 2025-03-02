@@ -1,50 +1,24 @@
 
 
-<% if(topic) { %>
-    <div class="user-tag-box">
-        <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %>"
-            href="/total-recall/users/<%=topic.author.displayname%>">
-            <img src=
-            '
-            <% if(topic.author.linkedavatar!==undefined & "") { %>
-                <%= topic.author.linkedavatar %>
-            <% } else { %>
-                /default_inserts/default_pfp.png
-            <% } %>
-            '>
-        </a>
-        
-        <div class="topic-etoc">
-            <h5>
-                <%= topic.author.displayname %>
-            </h5>
-            <p class="date">
-                <%=topic.date%> in TotalRecall <%=branchName%>
-            </p>
-        </div>
+
+<div class="user-tag-box">
+    <a class="user-avatar <% if(profile._id == user._id) { %>signed-in<% } %>"
+        href="/total-recall/users/<%=profile.displayname%>">
+        <img src=
+        '
+        <% if(profile.linkedavatar !== "") { %>
+            <%= profile.linkedavatar %>
+        <% } else { %>
+            /default_inserts/default_pfp.png
+        <% } %>
+        '>
+    </a>
+    
+    <div class="topic-etoc">
+        <h5>
+            <%= comment.author.displayname %>
+        </h5>
     </div>
-    <% } else if(comment) { %>
-        <div class="user-tag-box">
-            <a class="user-avatar <% if(comment.author._id == user._id) { %>signed-in<% } %>"
-                href="/total-recall/users/<%=comment.author.displayname%>">
-                <img src=
-                '
-                <% if(comment.author.linkedavatar!==undefined & "") { %>
-                    <%= comment.author.linkedavatar %>
-                <% } else { %>
-                    /default_inserts/default_pfp.png
-                <% } %>
-                '>
-            </a>
-            
-            <div class="topic-etoc">
-                <h5>
-                    <%= comment.author.displayname %>
-                </h5>
-                <p class="date">
-                    <%=comment.date%> in TotalRecall <%=branchName%>
-                </p>
-            </div>
-        </div>
-    <% } %>
+</div>
+
 

@@ -14,7 +14,7 @@ router.get('/sign-in', (req, res) => {
 
 router.get('/sign-out', (req, res) => {
     req.session.destroy();
-    res.redirect('/total-recall');
+    res.redirect('/total-recall/forums');
 });
 
 router.post('/sign-up', async (req, res) => {
@@ -68,6 +68,13 @@ router.post('/sign-in', async (req, res) => {
         if (!validPassword) {
             return res.send('Login failed. Please try again.');
         }
+
+        const userFull = {
+            usrid: userInDatabase._id,
+            usrnm: userInDatabase.username,
+            dspnm: userInDatabase.displayname,
+            admin: userInDatabase.isAdmin,
+        }
         
         // There is a user AND they had the correct password. Time to make a session!
         // Avoid storing the password, even in hashed format, in the session
@@ -77,9 +84,10 @@ router.post('/sign-in', async (req, res) => {
             _id: userInDatabase._id,
             displayname: userInDatabase.displayname,
             linked_user_img: userInDatabase.linkedavatar,
+            userPrivileges: userInDatabase.isAdmin,
         };
         
-        res.redirect('/total-recall');
+        res.redirect('/total-recall/forums');
     } catch (error) {
         console.log(error);
         res.redirect('/');

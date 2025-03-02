@@ -14,8 +14,8 @@
                     <span>Signed in as:</span>
                     <span class="main-username"><%= user.displayname %></span>
                 </div>
-                <a id="main-user-avatar" class="user-avatar signed-in"
-                href="/total-recall/user/<%= user.displayname %>/<%= user._id %>">
+                <a id="main-user-avatar" class="user-avatar signed-in <% if(user.userPrivileges) { %>admin-signed-in<% } %>"
+                href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
                     <% if(user.linked_user_img !=="") { %>
                         <img src="<%= user.linked_user_img %>">
                     <% } else { %>
@@ -36,7 +36,7 @@
             <% if(user) { %>
                 <div class="main-username"><%= user.displayname %></div>
                 <a id="main-user-avatar" class="user-avatar signed-in"
-                href="/total-recall/user/<%= user.displayname %>/<%= user._id %>">
+                href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
                     <% if(user.linked_user_img !=="") { %>
                         <img src="<%= user.linked_user_img %>">
                     <% } else { %>
@@ -54,13 +54,13 @@
     <div class="nav-links">
         <% if(user) { %>
             <div style="margin-bottom: 2px;">
-                <a class="authlink" href="/<%=user.displayname%>/total-recall/main">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/forums/main">
                     Main Forum
                 </a>
-                <a class="authlink" href="/<%=user.displayname%>/total-recall/art">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/forums/art">
                     Art Forum
                 </a>
-                <a class="authlink" href="/<%=user.displayname%>/total-recall/games">
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/forums/games">
                     Games Forum
                 </a>
             </div>
@@ -68,18 +68,17 @@
         <div>
             <% if(user) { %>
                 <div class="authlink">
-                    <details>
-                        <summary>New Topic</summary>
+                    <details><summary>New Topic</summary>
                         <div>
-                            <a href="/<%=user.displayname%>/total-recall/main/new">
+                            <a href="/<%=user.displayname%>/total-recall/forums/main/new">
                                 <p class="shadow">Main Forum</p>
                                 <p>Main Forum</p>
                             </a>
-                            <a href="/<%=user.displayname%>/total-recall/art/new">
+                            <a href="/<%=user.displayname%>/total-recall/forums/art/new">
                                 <p class="shadow">Art Forum</p>
                                 <p>Art Forum</p>
                             </a>
-                            <a href="/<%=user.displayname%>/total-recall/games/new">
+                            <a href="/<%=user.displayname%>/total-recall/forums/games/new">
                                 <p class="shadow">Games Forum</p>
                                 <p>Games Forum</p>
                             </a>
@@ -87,12 +86,18 @@
                     </details>
                 </div>
             <% } %>
-            <a class="authlink" href="/total-recall">Forums</a>
+            <a class="authlink" href="/total-recall/forums">Forums</a>
             <% if(user) { %>
+                <a class="authlink" href="/<%=user.displayname%>/total-recall/users">
+                    Users
+                </a>
                 <a class="authlink" href="/auth/sign-out">
                     Sign Out
                 </a>
             <% } else { %>
+                <a class="authlink" href="/total-recall/users">
+                    Users
+                </a>
                 <a class="authlink" href="/auth/sign-up">
                     Sign Up
                 </a>

@@ -25,6 +25,11 @@ const userSchema = Schema({
         type: String,
         required: true,
     },
+    isAdmin: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
     // topics: [topicSchema], // embedding the topicSchema here
 });
 

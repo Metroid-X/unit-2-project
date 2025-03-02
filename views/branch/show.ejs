@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="icon" href="/default_inserts/totalrecall_icon.png">
     <title><%=topic.title%> | <%=author.displayname%> | TotalRecall Forums</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
 
                 <div class="user-tag-box">
                     <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %>"
-                        href="/total-recall/users/<%=author.displayname%>">
+                        href="/<%= user.displayname %>/total-recall/users/<%=author.displayname%>/<%=author._id%>">
                         <img src=
                         '
                         <% if(author.linkedavatar!=="") { %>
@@ -45,7 +46,7 @@
             <div class="content comment">
                 <div class="user-tag-box">
                     <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %>"
-                        href="/total-recall/users/<%=author.displayname%>">
+                        href="/<%= user.displayname %>/total-recall/users/<%=author.displayname%>/<%=author._id%>">
                         <img src=
                         '
                         <% if(author.linkedavatar!=="") { %>
@@ -67,13 +68,13 @@
                         <details class="options">
                             <summary> ℹ </summary>
                             <div>
-                                <form action="/<%=user.displayname%>/total-recall/<%=
+                                <form action="/<%=user.displayname%>/total-recall/forums/<%=
                                     String(branchName).toLowerCase()%>/<%=
                                     (topic.title).replaceAll(' ', '-')%>/<%=
                                     topic._id%>?_method=DELETE" method="POST">
                                     <button class="del" type="submit">delete topic</button>
                                 </form>
-                                <a href="/<%=user.displayname%>/total-recall/<%=
+                                <a href="/<%=user.displayname%>/total-recall/forums/<%=
                                     String(branchName).toLowerCase()%>/<%=
                                     (topic.title).replaceAll(' ', '-')%>/<%=
                                     topic._id%>/edit">edit topic</a>
@@ -93,7 +94,7 @@
                     <div class="comment <% if(String(topic.author_id) == String(comment.author._id)) { %>content<% } %>">
                         <div class="user-tag-box">
                             <a class="user-avatar <% if(String(comment.author._id) == String(user._id)) { %>signed-in<% } %>"
-                                href="/total-recall/users/<%=comment.author.displayname%>">
+                                href="/<%= user.displayname %>/total-recall/users/<%=comment.author.displayname%>/<%=comment.author._id%>">
                                 <img src=
                                 '
                                 <% if(comment.author.linkedavatar!=="") { %>
@@ -115,13 +116,13 @@
                                 <details class="options">
                                     <summary> ℹ </summary>
                                     <div>
-                                        <form action="/<%=user.displayname%>/total-recall/<%=
+                                        <form action="/<%=user.displayname%>/total-recall/forums/<%=
                                             String(branchName).toLowerCase()%>/<%=
                                             (topic.title).replaceAll(' ', '-')%>/<%=
                                             topic._id%>/<%=comment._id%>?_method=DELETE" method="POST">
                                             <button class="del" type="submit">delete comment</button>
                                         </form>
-                                        <a href="/<%=user.displayname%>/total-recall/<%=
+                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=
                                             String(branchName).toLowerCase()%>/<%=
                                             (topic.title).replaceAll(' ', '-')%>/<%=
                                             topic._id%>/<%=comment._id%>/edit">edit comment</a>
@@ -146,7 +147,7 @@
                 <% if(user) { %>
                     
                     <div class="post-box">
-                        <form action="/<%=user.displayname%>/total-recall/<%=
+                        <form action="/<%=user.displayname%>/total-recall/forums/<%=
                             String(branchName).toLowerCase()%>/<%=
                             (topic.title).replaceAll(' ', '-')%>/<%=topic._id%>" method="POST">
         

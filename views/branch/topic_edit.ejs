@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="icon" href="/default_inserts/totalrecall_icon.png">
     <title>Editing Topic | <%= topic.title %> | <%=branchName%> | TotalRecall Forums</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
             </h2>
             
             <div class="topic-builder-box">
-                <form action="/<%=user.displayname%>/total-recall/<%=
+                <form action="/<%=user.displayname%>/total-recall/forums/<%=
                     String(branchName).toLowerCase()%>/<%=
                     (topic.title).replaceAll(' ', '-')%>/<%=
                     topic._id%>?_method=PUT" method="POST">

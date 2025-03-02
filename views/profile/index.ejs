@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="icon" href="/default_inserts/totalrecall_icon.png">
+    <title>TotalRecall Users</title>
+</head>
+<body>
+    <main>
+        
+        <%- include('../partials/navbar.ejs') %>
+        <div class="page-content">
+            <h1>Forum Users</h1>
+            
+            <% allUsers.forEach((profile) => { %>
+                <div class="profile-tag-box">
+                    <a class="user-avatar <% if(profile._id == user._id) { %>signed-in<% } %>"
+                        href="/total-recall/users/<%=profile.displayname%>">
+                        <img src=
+                        '
+                        <% if(profile.linkedavatar !== "") { %>
+                            <%= profile.linkedavatar %>
+                        <% } else { %>
+                            /default_inserts/default_pfp.png
+                        <% } %>
+                        '>
+                    </a>
+                    
+                    <div class="topic-etoc">
+                        <h3>
+                            <%= profile.displayname %>
+                        </h3>
+                    </div>
+                </div>
+            <% }); %>
+            
+        </div>
+    </main>
+</body>
+</html>
