@@ -45,7 +45,8 @@ router.get('/', async (req, res) => {
         res.render('forums/index.ejs', {
             userTopics: currentUser.topics,
             allUsers: returnUserBase(await User.find()),
-            forumDisplays: forums
+            userBase: await User.find(),
+            forumDisplays: forums,
         })
     } catch (error) {
         console.log(error);
@@ -109,13 +110,19 @@ router.get('/:forumBranch', async (req, res) => {
             )
         });
         
+        if(Object.keys(userArray).length==allUsers.length){
+            allUsersObj=userArray;
+        };
+
         const branchTopics = topicsArr;
         
         if(branchTopics.length===currentBranch.topics.length){
             res.render('branch/index.ejs', {
                 user: req.session.user,
                 conciseDate: homebrew.conciseDate,
+                monthArray: homebrew.months,
                 allUsers: allUsers,
+                userBase: allUsersObj,
                 forumBranch: currentBranch,
                 branchName: homebrew.capitalizeFirst(branchName),
                 topics: branchTopics,
@@ -169,7 +176,7 @@ router.post('/:forumBranch', async (req, res) => {
         await currentBranch.save();
 
 
-        res.redirect(`/${currentUser.displayname}/total-recall/${branchName}`);
+        res.redirect(`/${currentUser.displayname}/total-recall/forums/${branchName}`);
     } catch (error) {
         console.log(error);
         res.redirect('/');
@@ -343,7 +350,7 @@ router.put('/:forumBranch/:topicName/:topicId', async (req,res) => {
         await currentBranch.save();
 
         res.redirect(
-            `/${currentUser.displayname}/total-recall/${branchName}/${(topic.title).replaceAll(' ', '-')}/${req.params.topicId}`
+            `/${currentUser.displayname}/total-recall/forums/${branchName}/${(topic.title).replaceAll(' ', '-')}/${req.params.topicId}`
         )
     } catch (error) {
         console.log(error);
@@ -364,7 +371,7 @@ router.delete('/:forumBranch/:topicName/:topicId', async (req, res) => {
 
         await currentBranch.save();
 
-        res.redirect(`/${currentUser.displayname}/total-recall/${req.params.forumBranch}/`);
+        res.redirect(`/${currentUser.displayname}/total-recall/forums/${req.params.forumBranch}/`);
     } catch (error) {
         console.log(error);
         res.redirect('/');
@@ -396,7 +403,7 @@ router.post('/:forumBranch/:topicName/:topicId', async (req, res) => {
         await currentBranch.save();
 
 
-        res.redirect(`/${currentUser.displayname}/total-recall/${branchName}/${req.params.topicName}/${req.params.topicId}`);
+        res.redirect(`/${currentUser.displayname}/total-recall/forums/${branchName}/${req.params.topicName}/${req.params.topicId}`);
     } catch (error) {
         console.log(error);
         res.redirect('/');
@@ -494,7 +501,7 @@ router.put('/:forumBranch/:topicName/:topicId/:commentId', async (req,res) => {
         await currentBranch.save();
 
         res.redirect(
-            `/${currentUser.displayname}/total-recall/${req.params.forumBranch}/${req.params.topicName}/${req.params.topicId}`
+            `/${currentUser.displayname}/total-recall/forums/${req.params.forumBranch}/${req.params.topicName}/${req.params.topicId}`
         )
     } catch (error) {
         console.log(error);
@@ -516,7 +523,7 @@ router.delete('/:forumBranch/:topicName/:topicId/:commentId', async (req, res) =
 
         await currentBranch.save();
 
-        res.redirect(`/${currentUser.displayname}/total-recall/${req.params.forumBranch}/${req.params.topicName}/${req.params.topicId}`);
+        res.redirect(`/${currentUser.displayname}/total-recall/forums/${req.params.forumBranch}/${req.params.topicName}/${req.params.topicId}`);
     } catch (error) {
         console.log(error);
         res.redirect('/');

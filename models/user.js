@@ -30,6 +30,11 @@ const userSchema = Schema({
         required: false,
         default: false,
     },
+    userSince: {
+        type: Date,
+        required: true,
+        default: Date.now(),
+    },
     // topics: [topicSchema], // embedding the topicSchema here
 });
 

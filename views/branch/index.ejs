@@ -31,7 +31,7 @@
                             <hr>
 
                             <div class="user-tag-box">
-                                <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %>"
+                                <a class="user-avatar <% if(topic.author._id == user._id) { %>signed-in<% } %> <% if(topic.author.isAdmin) { %>admin-signed-in<% } %>"
                                     href="/<%= user.displayname %>/total-recall/users/<%=topic.author.displayname%>/<%=topic.author._id%>">
                                     <img src=
                                     '
@@ -44,9 +44,9 @@
                                 </a>
                                 
                                 <div class="topic-etoc">
-                                    <h5>
+                                    <h4>
                                         <%= topic.author.displayname %>
-                                    </h5>
+                                    </h4>
                                     <p class="date">
                                         <span><%= topic.date.concise %> in TotalRecall <%=branchName%></span>
                                         <% if(topic.date.real < topic.dateUpdated.real) { %>
@@ -58,13 +58,23 @@
                             </div>
                         </div>
                         <span class="content-preview">
-                            <img src="<%=topic.linked%>" class="linked-preview linked">
+                            <img 
+                                src="<%= topic.linked %>"
+                                class="linked-preview linked" 
+                                style="
+                                min-height: 100px; 
+                                min-width: 5px; 
+                                <% if(topic.linked =='') { %>visibility: hidden;<% } %>"
+                            >
                             <p>
                                 <%=topic.content%>
                                 <br>
                                 <% if(topic.comments.length !== 0) { %>
-                                    ...
-                                    <em style="color: lightcyan;">later, someone said:</em>
+                                    
+                                    <br>
+                                    <em style="color: darkgray;">on <%= 
+        `${monthArray[topic.comments[(topic.comments.length-1)].date.getMonth()]} ${topic.comments[(topic.comments.length-1)].date.getDate()}, ${topic.comments[(topic.comments.length-1)].date.getFullYear()}` 
+                                        %>, <%= userBase[topic.comments[(topic.comments.length-1)].author_id].displayname %> said:</em>
                                     <br>
                                     <%= topic.comments.pop().content %>
                                 <% } %>

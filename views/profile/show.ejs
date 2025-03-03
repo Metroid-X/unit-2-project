@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="icon" href="/default_inserts/totalrecall_icon.png">
+    <title>Userpage of <%=profileTarget.displayname%></title>
+</head>
+<body>
+    <main>
+        
+        <%- include('../partials/navbar.ejs') %>
+        <div class="page-content">
+            <div class="profile-tag-box">
+                <div class="user-avatar <% if(profileTarget._id == user._id) { %>signed-in<% } %> <% if(profileTarget.isAdmin) { %>admin-signed-in<% } %>">
+                    <img src=
+                    '
+                    <% if(profileTarget.linkedavatar !== "") { %>
+                        <%= profileTarget.linkedavatar %>
+                    <% } else { %>
+                        /default_inserts/default_pfp.png
+                    <% } %>
+                    '>
+                    </div>
+                
+                <div class="topic-etoc">
+                    <h3>
+                        <%= profileTarget.displayname %>
+                    </h3>
+                    <p class="date">
+                        <span>Joined <%= profileTarget.userSince.concise %></span>
+                    </p>
+                </div>
+                <div class="user-stats">
+                    <p>
+                        <span> | </span>
+                        <span1> <span>Topics Posted: </span><span><%= profileTarget.topics.length %></span> </span1>
+                        <span> | </span>
+                        <span1> <span>Comments Made: </span><span><%= profileTarget.comments.length %></span> </span1>
+                        <span> | </span>
+                    </p>
+                </div>
+            </div>
+            <block>
+                <hr>
+                <div class="show-box">
+                    <h2>Topics by this user:</h2>
+    
+                    <% if(profileTarget.topics.length > 0) { %>
+                        <% profileTarget.topics.forEach((topic)=>{ %>
+                            
+                            <div class="topic-preview-box">
+                                <div class="topic-heading">
+                                    <h2>
+                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=topic.branch.forum_branch%>/<%=(topic.topic.title).replaceAll(' ', '-')%>/<%=topic.topic._id%>">
+                                            <%= topic.topic.title %>
+                                        </a>
+                                    </h2>
+                                    <hr>
+    
+                                    <div class="user-tag-box">
+                                        <a class="user-avatar <% if(profileTarget._id == user._id) { %>signed-in<% } %> <% if(profileTarget.isAdmin) { %>admin-signed-in<% } %>"
+                                            href="">
+                                            <img src=
+                                            '
+                                            <% if(profileTarget.linkedavatar!=="") { %>
+                                                <%= profileTarget.linkedavatar %>
+                                            <% } else { %>
+                                                /default_inserts/default_pfp.png
+                                            <% } %>
+                                            '>
+                                        </a>
+                                        
+                                        <div class="topic-etoc">
+                                            <h4>
+                                                <%= profileTarget.displayname %>
+                                            </h4>
+                                            <p class="date">
+                                                <span><%= 
+                                `${monthArray[topic.topic.date_updated.getMonth()]} ${topic.topic.date_updated.getDate()}, ${topic.topic.date_updated.getFullYear()}`
+                                                    %> in TotalRecall <%=topic.branch.forum_branch%></span>
+                                                <% if(topic.topic.date < topic.topic.date_updated) { %>
+                                                    <span>&nbsp;|&nbsp;</span>
+                                                    <span>Edited: <%= 
+                                `${monthArray[topic.topic.date_updated.getMonth()]} ${topic.topic.date_updated.getDate()}, ${topic.topic.date_updated.getFullYear()}`
+                                                        %></span>
+                                                <% } %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="content-preview">
+                                    <img 
+                                        src="<%= topic.topic.linked %>"
+                                        class="linked-preview linked" 
+                                        style="
+                                        min-height: 100px; 
+                                        min-width: 5px; 
+                                        <% if(topic.topic.linked =='') { %>visibility: hidden;<% } %>"
+                                    >
+                                    <p>
+                                        <%=topic.topic.content%>
+                                        <br>
+                                        <% if(topic.topic.comments.length !== 0) { %>
+                                            
+                                            <br>
+                                            <em style="color: darkgray;">on <%= 
+                        `${monthArray[topic.topic.comments[(topic.topic.comments.length-1)].date.getMonth()]} ${topic.topic.comments[(topic.topic.comments.length-1)].date.getDate()}, ${topic.topic.comments[(topic.topic.comments.length-1)].date.getFullYear()}` 
+                                                %>, <%= userBase[topic.topic.comments[(topic.topic.comments.length-1)].author_id].displayname %> said:</em>
+                                            <br>
+                                            <%= topic.topic.comments.pop().content %>
+                                        <% } %>
+                                    </p>
+                                </span>
+                            </div>
+                            
+                        <% }) %>
+                    <% } else { %>
+                        <div class="topic-preview-box">
+                            <h3>This user hasn't posted any topics</h3>
+                        </div>
+                    <% } %>
+                </div>
+                <hr>
+                <div class="show-box">
+                    <h2>Comments from this user:</h2>
+    
+                    <% if(profileTarget.comments.length > 0) { %>
+                        <% profileTarget.comments.forEach((comment)=>{ %>
+                            
+                            <div class="topic-preview-box">
+                                <div class="topic-heading">
+                                    <h2>
+                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=comment.branch.forum_branch%>/<%=(comment.topic.title).replaceAll(' ', '-')%>/<%=comment.topic._id%>">
+                                            <%= comment.topic.title %>
+                                        </a>
+                                    </h2>
+                                    <hr>
+    
+                                    <div class="user-tag-box">
+                                        <a class="user-avatar <% if(profileTarget._id == user._id) { %>signed-in<% } %> <% if(profileTarget.isAdmin) { %>admin-signed-in<% } %>"
+                                            href="">
+                                            <img src=
+                                            '
+                                            <% if(profileTarget.linkedavatar!=="") { %>
+                                                <%= profileTarget.linkedavatar %>
+                                            <% } else { %>
+                                                /default_inserts/default_pfp.png
+                                            <% } %>
+                                            '>
+                                        </a>
+                                        
+                                        <div class="topic-etoc">
+                                            <h4>
+                                                <%= profileTarget.displayname %>
+                                            </h4>
+                                            <p class="date">
+                                                <span><%= 
+                                `${monthArray[comment.comment.date_updated.getMonth()]} ${comment.comment.date_updated.getDate()}, ${comment.comment.date_updated.getFullYear()}`
+                                                    %> in TotalRecall <%=comment.branch.forum_branch%></span>
+                                                <% if(comment.comment.date < comment.comment.date_updated) { %>
+                                                    <span>&nbsp;|&nbsp;</span>
+                                                    <span>Edited: <%= 
+                                `${monthArray[comment.comment.date_updated.getMonth()]} ${comment.comment.date_updated.getDate()}, ${comment.comment.date_updated.getFullYear()}`
+                                                        %></span>
+                                                <% } %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="content-preview">
+                                    <img 
+                                        src="<%= comment.comment.linked %>"
+                                        class="linked-preview linked" 
+                                        style="
+                                        min-height: 100px; 
+                                        min-width: 5px; 
+                                        <% if(comment.comment.linked =='') { %>visibility: hidden;<% } %>"
+                                    >
+                                    <p>
+                                        <%=comment.comment.content%>
+                                    </p>
+                                </span>
+                            </div>
+                            
+                        <% }) %>
+                    <% } else { %>
+                        <div class="topic-preview-box">
+                            <h3>This user hasn't posted any comments</h3>
+                        </div>
+                    <% } %>
+                </div>
+                <hr>
+            </block>
+
+        </div>
+    </main>
+</body>
+</html>

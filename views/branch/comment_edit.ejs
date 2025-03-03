@@ -16,7 +16,7 @@
                 <hr>
 
                 <div class="user-tag-box">
-                    <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %>"
+                    <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %> <% if(author.isAdmin) { %>admin-signed-in<% } %>"
                         href="/<%= user.displayname %>/total-recall/users/<%=author.displayname%>">
                         <img src=
                         '
@@ -28,9 +28,9 @@
                         '>
                     </a>
                     <div class="topic-etoc">
-                        <h5>
+                        <h4>
                             <%= author.displayname %>
-                        </h5>
+                        </h4>
                         <p class="date">
                             <%= topicDate.concise %> in TotalRecall <%=branchName%>
                         </p>
@@ -40,7 +40,7 @@
             
             <div class="content comment">
                 <div class="user-tag-box">
-                    <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %>"
+                    <a class="user-avatar <% if(String(topic.author_id) == String(user._id)) { %>signed-in<% } %> <% if(author.isAdmin) { %>admin-signed-in<% } %>"
                         href="/<%= user.displayname %>/total-recall/users/<%=author.displayname%>/<%=author._id%>">
                         <img src=
                         '
@@ -52,9 +52,9 @@
                         '>
                     </a>
                     <div class="topic-etoc">
-                        <h5>
+                        <h4>
                             <%= author.displayname %>
-                        </h5>
+                        </h4>
                         <p class="date">
                             <%= topicDate.concise %> in TotalRecall <%=branchName%>
                         </p>
@@ -86,7 +86,7 @@
                 
             <% if(comments.length !== 0) { %>
                 <% comments.forEach((comment) => { %>
-                    <div class="comment <% if(String(topic.author_id) == String(comment.author._id)) { %>content<% } %>">
+                    <div class="comment <% if(String(topic.author_id) == String(comment.author._id)) { %>content<% } %> <% if(comment.author.isAdmin) { %>admin-signed-in<% } %>">
                         <div class="user-tag-box">
                             <a class="user-avatar <% if(String(comment.author._id) == String(user._id)) { %>signed-in<% } %>"
                                 href="/<%= user.displayname %>/total-recall/users/<%=comment.author.displayname%>/<%=comment.author._id%>">
@@ -100,9 +100,9 @@
                                 '>
                             </a>
                             <div class="topic-etoc">
-                                <h5>
+                                <h4>
                                     <%= comment.author.displayname %>
-                                </h5>
+                                </h4>
                                 <p class="date">
                                     <%= comment.date.concise %> in TotalRecall <%=branchName%>
                                 </p>

@@ -33,6 +33,7 @@ nav {
 
     .nav-links {
         border: 2px outset black;
+        border: 2px solid black;
         padding: 2px;
         border-top: 0px outset black;
         padding-left: 0;
@@ -158,6 +159,7 @@ nav {
     align-items: center;
     height: fit-content;
     border: 2px outset black;
+    border: 2px solid black;
     border-bottom: 0px outset black;
 }
 #user-status {

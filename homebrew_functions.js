@@ -135,8 +135,9 @@ const homebrew = {
         
         const yearDiff = date1.getUTCFullYear()-date2.getUTCFullYear();
         const monthDiff = date1.getUTCMonth()-date2.getUTCMonth();
-        const weekDiff = Math.floor(Number(date2-date1)/604800000);
-        const dayDiff = date1.getUTCDate()-date2.getUTCDate();
+        const weekDiff = floor((round(date2/7)-round(date1/7))*7/604800000);
+        // const dayDiff = date1.getUTCDate()-date2.getUTCDate();
+        const dayDiff = floor((round(date2/24)-round(date1/24))*24/86400000);
         const hourDiff = date1.getUTCHours()-date2.getUTCHours();
         const minuteDiff = date1.getUTCMinutes()-date2.getUTCMinutes();
         const secondDiff = date1.getUTCSeconds()-date2.getUTCSeconds();
@@ -196,16 +197,16 @@ const homebrew = {
                                 } else {
                                     monthAmount = `${monthDiff} months ago`
                                 }
-                            } else if((date2-date1) >= 604800000){
+                            } else if(weekDiff >= 1){
                                 // if at least one week
-                                if(weekDiff == -1){
+                                if(weekDiff == 1){
                                     weekAmount=`${weekDiff} week ago`;
                                 } else {
                                     weekAmount=`${weekDiff} weeks ago`;
                                 }
-                            } else if((date2-date1) >= 86400000) {
+                            } else if(dayDiff >= 1) {
                                 // if at least one day
-                                if(dayDiff == -1){
+                                if(dayDiff == 1){
                                     dayAmount=`${dayDiff} day ago`;
                                 } else {
                                     dayAmount=`${dayDiff} days ago`;
@@ -264,19 +265,19 @@ const homebrew = {
                     
                     monthAmount = `${monthDiff} months ago`
                     
-                } else if((date2-date1) >= 604800000){
+                } else if(weekDiff >= 1){
                     // if at least one week
-                    if(weekDiff == -1){
+                    if(weekDiff == 1){
                         weekAmount=`${weekDiff} week ago`;
                     } else {
                         weekAmount=`${weekDiff} weeks ago`;
                     }
-                } else if((date2-date1) >= 86400000) {
+                } else if(dayDiff >= 1) {
                     // if at least one day
-                    if(dayDiff == -1){
-                        dayAmount=`${(round(date2/86400000)-round(date1/86400000))} day ago`;
+                    if(dayDiff == 1){
+                        dayAmount=`${dayDiff} day ago`;
                     } else {
-                        dayAmount=`${(round(date2/86400000)-round(date1/86400000))} days ago`;
+                        dayAmount=`${dayDiff} days ago`;
                     }
                 } else if((date2-date1) >= 3600000){
                     // if at least one hour
@@ -311,7 +312,21 @@ const homebrew = {
             return result;
     },
 
-    
+    branchNames: ["main", "art", "games"],
+    months: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ],
     
 };
 // const date1 = new Date("May 1, 2025 00:0:00");

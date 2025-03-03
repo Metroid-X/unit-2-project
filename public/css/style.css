@@ -81,7 +81,7 @@ hr {
     background-color: lightcyan;
     width: calc(100% - 28px);
     min-height: 100px;
-    max-height: 200px;
+    max-height: 220px;
     margin: 8px;
     padding: 4px 4px;
     border: 2px solid black;
@@ -176,36 +176,48 @@ details.options[open] {
 .user-tag-box {
     background-color: lightblue;
     padding: 0px;
-    height: 36px;
+    height: 54px;
     aspect-ratio: 4 / 1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    outline: 1px solid black;
     
-    h5 {
+    h4 {
         margin: 2px;
         width: calc(100% - 4px);
     }
 
     .user-avatar {
-        height: calc(100% - 10px);
+        height: calc(100% - 18px);
         border-width: 3px;
-        margin: 2px;
+        margin: 6px;
         aspect-ratio: 1;
         align-self: center;
     }
 
     .topic-etoc {
         width: calc(100%);
+        p {
+            
+            bottom: 0;
+        }
     }
     
+    .admin-signed-in {
+        border-width: 2px;
+        border-color: darkorange;
+        background-color: white;
+        padding: 1px;
+        outline: 1px solid white;
+    }
 }
 
 .profile-tag-box {
     background-color: lightblue;
     padding: 4px;
-    margin: 8px;
+    margin: 6px;
     height: 54px;
     aspect-ratio: 4 / 1;
     display: flex;
@@ -213,6 +225,10 @@ details.options[open] {
     justify-content: space-between;
     width: calc(100% - 12px);
     
+    border-radius: 4px;
+    outline: 1px solid rgb(82, 82, 82);
+    outline: 1px solid black;
+
     h3 {
         margin: 4px;
         width: calc(100% - 4px);
@@ -358,4 +374,47 @@ details.options[open] {
     margin: 8px 0;
     border: 0;
     outline-width: 2px;
+}
+
+.user-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 150%;
+    margin: 8px;
+    p {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 2px;
+        span {
+            font-weight: bold;
+            margin: 1px;
+        }
+        span1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 3px 6px;
+            width: 100%;
+            
+            span {
+                font-weight: normal;
+                margin: 0;
+            }
+        }
+    }
+}
+
+block {
+    width: 100%;
+    .show-box {
+        margin: 16px 8px;
+        background-color: lightblue;
+        padding: 8px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
 }
