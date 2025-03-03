@@ -242,7 +242,7 @@ router.get('/:forumBranch/:topicName/:topicId', async (req, res) => {
 
         if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/show.ejs', {
-                user: currentUser,
+                user: req.session.user,
                 author: topicAuthor,
                 topic: currentTopic,
                 topicDate: topicDate,
@@ -315,7 +315,7 @@ router.get('/:forumBranch/:topicName/:topicId/edit', async (req,res) => {
 
         if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/topic_edit.ejs', {
-                user: currentUser,
+                user: req.session.user,
                 author: topicAuthor,
                 topic: currentTopic,
                 topicDate: topicDate,
@@ -350,7 +350,7 @@ router.put('/:forumBranch/:topicName/:topicId', async (req,res) => {
         await currentBranch.save();
 
         res.redirect(
-            `/${currentUser.displayname}/total-recall/forums/${branchName}/${(topic.title).replaceAll(' ', '-')}/${req.params.topicId}`
+            `/${currentUser.displayname}/total-recall/forums/${branchName}/${(topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')}/${req.params.topicId}`
         )
     } catch (error) {
         console.log(error);
@@ -469,7 +469,7 @@ router.get('/:forumBranch/:topicName/:topicId/:commentId/edit', async (req,res) 
 
         if(topicComments.length===currentTopic.comments.length && topicUpdated.concise !== undefined){
             res.render('branch/comment_edit.ejs', {
-                user: currentUser,
+                user: req.session.user,
                 author: topicAuthor,
                 topic: currentTopic,
                 topicDate: topicDate,

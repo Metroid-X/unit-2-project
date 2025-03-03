@@ -15,12 +15,8 @@
                     <span class="main-username"><%= user.displayname %></span>
                 </div>
                 <a id="main-user-avatar" class="user-avatar signed-in <% if(user.userPrivileges) { %>admin-signed-in<% } %>"
-                href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
-                    <% if(user.linked_user_img !=="") { %>
-                        <img src="<%= user.linked_user_img %>">
-                    <% } else { %>
-                        <img src="/default_inserts/default_pfp.png">
-                    <% } %>
+                    href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
+                    <img src="<%= user.linked_user_img %>">
                     </a>
             <% } else { %>
                 <div id="user-status-actual">
@@ -36,12 +32,8 @@
             <% if(user) { %>
                 <div class="main-username"><%= user.displayname %></div>
                 <a id="main-user-avatar" class="user-avatar signed-in"
-                href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
-                    <% if(user.linked_user_img !=="") { %>
-                        <img src="<%= user.linked_user_img %>">
-                    <% } else { %>
-                        <img src="/default_inserts/default_pfp.png">
-                    <% } %>
+                    href="/<%= user.displayname %>/total-recall/users/you/<%= user._id %>">
+                    <img src="<%= user.linked_user_img %>">
                     </a>
             <% } else { %>
                 <div class="main-username">Guest</div>

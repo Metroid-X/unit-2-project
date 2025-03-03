@@ -85,6 +85,7 @@ router.post('/sign-in', async (req, res) => {
             displayname: userInDatabase.displayname,
             linked_user_img: userInDatabase.linkedavatar,
             userPrivileges: userInDatabase.isAdmin,
+            userFull: userFull,
         };
         
         res.redirect('/total-recall/forums');

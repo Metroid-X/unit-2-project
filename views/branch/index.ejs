@@ -24,7 +24,7 @@
                     <div class="topic-preview-box">
                         <div class="topic-heading">
                             <h2>
-                                <a href="/<%=user.displayname%>/total-recall/forums/<%=String(branchName).toLowerCase()%>/<%=(topic.title).replaceAll(' ', '-')%>/<%=topic._id%>">
+                                <a href="/<%=user.displayname%>/total-recall/forums/<%=String(branchName).toLowerCase()%>/<%=(topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=topic._id%>">
                                     <%= topic.title %>
                                 </a>
                             </h2>

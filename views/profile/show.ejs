@@ -53,7 +53,7 @@
                             <div class="topic-preview-box">
                                 <div class="topic-heading">
                                     <h2>
-                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=topic.branch.forum_branch%>/<%=(topic.topic.title).replaceAll(' ', '-')%>/<%=topic.topic._id%>">
+                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=topic.branch.forum_branch%>/<%=(topic.topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=topic.topic._id%>">
                                             <%= topic.topic.title %>
                                         </a>
                                     </h2>
@@ -132,7 +132,7 @@
                             <div class="topic-preview-box">
                                 <div class="topic-heading">
                                     <h2>
-                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=comment.branch.forum_branch%>/<%=(comment.topic.title).replaceAll(' ', '-')%>/<%=comment.topic._id%>">
+                                        <a href="/<%=user.displayname%>/total-recall/forums/<%=comment.branch.forum_branch%>/<%=(comment.topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=comment.topic._id%>">
                                             <%= comment.topic.title %>
                                         </a>
                                     </h2>
