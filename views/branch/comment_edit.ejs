@@ -65,13 +65,13 @@
                             <div>
                                 <form action="/<%=user.displayname%>/total-recall/forums/<%=
                                     String(branchName).toLowerCase()%>/<%=
-                                    (topic.title).replaceAll(' ', '-')%>/<%=
+                                    (topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=
                                     topic._id%>?_method=DELETE" method="POST">
                                     <button class="del" type="submit">delete comment</button>
                                 </form>
                                 <a href="/<%=user.displayname%>/total-recall/forums/<%=
                                     String(branchName).toLowerCase()%>/<%=
-                                    (topic.title).replaceAll(' ', '-')%>/<%=
+                                    (topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=
                                     topic._id%>/edit">edit topic</a>
                             </div>
                         </details>
@@ -113,13 +113,13 @@
                                     <div>
                                         <form action="/<%=user.displayname%>/total-recall/forums/<%=
                                             String(branchName).toLowerCase()%>/<%=
-                                            (topic.title).replaceAll(' ', '-')%>/<%=
+                                            (topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=
                                             topic._id%>/<%=comment._id%>?_method=DELETE" method="POST">
                                             <button class="del" type="submit">delete comment</button>
                                         </form>
                                         <a href="/<%=user.displayname%>/total-recall/forums/<%=
                                             String(branchName).toLowerCase()%>/<%=
-                                            (topic.title).replaceAll(' ', '-')%>/<%=
+                                            (topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=
                                             topic._id%>/<%=comment._id%>/edit">edit comment</a>
                                     </div>
                                 </details>
@@ -144,7 +144,7 @@
                     <div class="post-box">
                         <form action="/<%=user.displayname%>/total-recall/forums/<%=
                             String(branchName).toLowerCase()%>/<%=
-                            (topic.title).replaceAll(' ', '-')%>/<%=
+                            (topic.title).replaceAll(' ', '-').replaceAll('?', '--question--').replaceAll('!', '--exclaim--').replaceAll('$', '--dollar--').replaceAll('*', '-').replaceAll('&', 'and').replaceAll('%', '--percent--').replaceAll('#', '--tag--').replaceAll('@', '--atsign--').replaceAll('/', '-').replaceAll('~', '-').replaceAll('`', '').replaceAll('+', '--plus--').replaceAll('=', '--eqls--').replaceAll("'", '').replaceAll('"', '--quot--')%>/<%=
                             topic._id%>/<%=currentComment._id%>?_method=PUT" method="POST">
         
                             <label for="content">Content: *</label>
